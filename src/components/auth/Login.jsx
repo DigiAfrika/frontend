@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
-import logoImage from '../../assets/react.svg';
+// import logoImage from '../../assets/react.svg';
+import logoImage from '../../assets/logo.jpeg';
 
 const Login = () => {
   const [email, setEmail] = useState('');

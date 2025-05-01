@@ -18,9 +18,19 @@ import {
   BsCurrencyDollar,
   BsGlobe,
 } from "react-icons/bs";
+import Youths from '../assets/youth2.png';
+import pFrame1 from '../assets/pFrame1.png';
+import pFrame3 from '../assets/pFrame3.png';
+import pic10 from '../assets/pFrame1.png';
+import Logo from '../assets/logo.jpeg';
+
+import { Link, useNavigate } from 'react-router-dom';
+
+
 
 // --- Navbar component ---
 const Navbar = () => {
+    const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +57,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#" className="text-2xl font-bold text-[#065A2F]">
-          DigiAfrika
+          <img src={Logo} className="w-[70px] h-[70px]" />
         </a>
 
         {/* Navigation Links */}
@@ -80,10 +90,10 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-4">
-          <button className="hidden md:block px-4 py-2 text-[#065A2F] font-medium border border-[#065A2F] rounded-full hover:bg-[#065A2F] hover:text-white transition-colors">
+          <button onClick={() => navigate('/login')} className="hidden md:block px-4 py-2 text-[#065A2F] font-medium border border-[#065A2F] rounded-full hover:bg-[#065A2F] hover:text-white transition-colors">
             Log In
           </button>
-          <button className="px-4 py-2 bg-[#F69704] text-white font-medium rounded-full hover:bg-opacity-90 transition-colors">
+          <button onClick={() => navigate('/register')} className="px-4 py-2 bg-[#F69704] text-white font-medium rounded-full hover:bg-opacity-90 transition-colors">
             Sign Up
           </button>
           {/* Add Mobile Menu Button here if needed */}
@@ -145,7 +155,7 @@ const HeroSection = () => {
             <div className="relative">
               <div className="bg-[#065A2F]/10 rounded-lg p-6 md:p-8">
                 <img
-                  src="https://via.placeholder.com/600x400.png/065A2F/FFFFFF?text=DigiAfrika+Platform" // Using placeholder image
+                  src={Youths} // Using placeholder image
                   alt="Digital entrepreneurs using DigiAfrika"
                   className="rounded-lg shadow-lg w-full"
                 />
@@ -469,7 +479,7 @@ const TestimonialsSection = () => {
       name: "Sarah Okonkwo",
       role: "Founder, Afro-Chic Designs",
       location: "Lagos, Nigeria",
-      image: "https://via.placeholder.com/80x80.png/F69704/FFFFFF?text=SO", // Placeholder
+      image: {pFrame3}, // Placeholder
     },
     {
       quote:
@@ -477,7 +487,7 @@ const TestimonialsSection = () => {
       name: "Emmanuel Kagame",
       role: "CEO, FarmConnect",
       location: "Kigali, Rwanda",
-      image: "https://via.placeholder.com/80x80.png/065A2F/FFFFFF?text=EK", // Placeholder
+      image: {pic10}, // Placeholder
     },
     {
       quote:
@@ -485,7 +495,7 @@ const TestimonialsSection = () => {
       name: "Amina Hassan",
       role: "Founder, Digital Solutions",
       location: "Mombasa, Kenya",
-      image: "https://via.placeholder.com/80x80.png/F69704/FFFFFF?text=AH", // Placeholder
+      image: {pFrame1}, // Placeholder
     },
   ];
 
@@ -539,7 +549,7 @@ const TestimonialsSection = () => {
                   <div className="mb-6 md:mb-0 md:mr-8 flex-shrink-0"> {/* Added flex-shrink-0 */}
                     <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#F69704]">
                       <img
-                        src={testimonial.image}
+                        src={pFrame3}
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
                       />

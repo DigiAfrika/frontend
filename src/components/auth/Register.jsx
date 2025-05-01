@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import logoImage from '../../assets/react.svg'; // You'll need to add a logo image
+// import logoImage from '../../assets/react.svg'; 
+import logoImage from '../../assets/logo.jpeg';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -156,7 +157,7 @@ const Register = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
             <div className="grid grid-cols-2 gap-4">
               <div 
@@ -172,7 +173,7 @@ const Register = () => {
                 <span className="text-sm font-medium">Freelancer</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div>
             <button
