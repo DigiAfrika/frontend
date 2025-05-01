@@ -9,6 +9,7 @@ import CheckEmailPage from './pages/CheckEmailPage.jsx';
 import ActivateAccountPage from './pages/ActivateAccountPage.jsx';
 import ForgotPassword from './components/auth/ForgotPassword.jsx';
 import ResetPasswordConfirm from './components/auth/ResetPasswordConfirm.jsx';
+import HomePage from './pages/HomePage.jsx';
 import './index.css';
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         
+        <Route path="/" element={<HomePage />} />
         {/* Redirect to login if no route matches */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </ReduxProvider>
