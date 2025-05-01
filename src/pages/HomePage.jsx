@@ -57,7 +57,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#" className="text-2xl font-bold text-[#065A2F]">
-          <img src={Logo} className="w-[70px] h-[70px]" />
+          <img src={Logo} className="w-[100px] h-[100px] sm:w-[80px] sm:h-[80px]" />
         </a>
 
         {/* Navigation Links */}
@@ -114,7 +114,7 @@ const HeroSection = () => {
       {/* Added container div */}
       <div className="container mx-auto px-4">
         {/* Added flex container */}
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
