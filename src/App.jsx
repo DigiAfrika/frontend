@@ -23,10 +23,12 @@ function App() {
         <Route path="/activate/:uid/:token" element={<ActivateAccountPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
         
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          
         </Route>
         
         <Route path="/" element={<HomePage />} />

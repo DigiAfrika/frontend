@@ -1,42 +1,111 @@
-import React, { useEffect } from 'react';
-import { useAuth } from '../../hooks/useAuth';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import Tabs from './Tabs';
+import LmsSection from './LmsSection';
+import StorefrontSection from './StorefrontSection';
+import { demoUserData } from '../../components/dashboard/data';
+import { FaChalkboard, FaStore } from 'react-icons/fa'; // Icons for tabs
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../../assets/logo.jpeg';
 
-const Dashboard = () => {
-  const { logout, fetchCurrentUser } = useAuth();
-  const user = useSelector((state) => state.auth.user);
+// --- Navbar component ---
+const Navbar = () => {
+    const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
 
-  // useEffect(() => {
-  //   fetchCurrentUser();
-  // }, [fetchCurrentUser]);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <button
-            onClick={logout}
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md py-2" : "bg-white py-4"
+      }`}
+    >
+      {/* Added container div */}
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Logo */}
+        <a href="#" className="text-2xl font-bold text-[#065A2F]">
+          <img src={Logo} className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px]" />
+        </a>
+
+        {/* Navigation Links */}
+        <div className="hidden md:flex items-center space-x-8">
+          <a
+            href="#features"
+            className="text-[#065A2F] font-medium hover:text-[#F69704] transition-colors"
           >
-            Logout
+            Features
+          </a>
+          <a
+            href="#benefits"
+            className="text-[#065A2F] font-medium hover:text-[#F69704] transition-colors"
+          >
+            Benefits
+          </a>
+          <a
+            href="#impact"
+            className="text-[#065A2F] font-medium hover:text-[#F69704] transition-colors"
+          >
+            Impact
+          </a>
+          <a
+            href="#testimonials"
+            className="text-[#065A2F] font-medium hover:text-[#F69704] transition-colors"
+          >
+            Success Stories
+          </a>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center space-x-4">
+          <button onClick={() => navigate('/login')} className=" md:block px-4 py-2 text-[#065A2F] font-medium border border-[#065A2F] rounded-full hover:bg-[#065A2F] hover:text-white transition-colors">
+            Log Out
           </button>
+          {/* Add Mobile Menu Button here if needed */}
         </div>
-      </header>
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          {user && (
-            <div className="px-4 py-6 bg-white shadow rounded-lg">
-              <h2 className="text-lg font-semibold text-gray-800">User Information</h2>
-              <div className="mt-4">
-                <p><strong>Email:</strong> {user?.email}</p>
-                <p><strong>Status:</strong> {user?.is_client ? 'Client' : user?.is_freelancer ? 'Freelancer' : 'Unknown'}</p>
-              </div>
-            </div>
-          )}
-        </div>
-      </main>
+      </div>
+    </nav>
+  );
+};
+
+
+const Dashboard = () => {
+  const [activeTab, setActiveTab] = useState('lms'); // Default to LMS tab
+
+  const tabs = [
+    { name: 'lms', label: 'Learning & Mentorship', icon: FaChalkboard },
+    { name: 'storefront', label: 'Storefront Setup', icon: FaStore },
+  ];
+
+  return (
+    // Added padding top to account for a potential fixed navbar
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-gray-100 pt-20">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold text-[#065A2F] mb-6">Your Dashboard</h1>
+
+        <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+
+        <div className="mt-6"> {/* Added margin top */}
+            {/* Pass user/setUser down if state is lifted */}
+            {activeTab === 'lms' && <LmsSection /* user={user} setUserData={setUser} */ />}
+            {activeTab === 'storefront' && <StorefrontSection user={demoUserData} /* setUserData={setUser} */ />}
+          </div>
+      </div>
     </div>
+    </>
   );
 };
 
