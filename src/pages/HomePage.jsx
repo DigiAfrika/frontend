@@ -93,8 +93,8 @@ const Navbar = () => {
           <button onClick={() => navigate('/login')} className="hidden md:block px-4 py-2 text-[#065A2F] font-medium border border-[#065A2F] rounded-full hover:bg-[#065A2F] hover:text-white transition-colors">
             Log In
           </button>
-          <button onClick={() => navigate('/register')} className="px-4 py-2 bg-[#F69704] text-white font-medium rounded-full hover:bg-opacity-90 transition-colors">
-            Sign Up
+          <button onClick={() => navigate('/login')} className="px-4 py-2 bg-[#F69704] text-white font-medium rounded-full hover:bg-opacity-90 transition-colors">
+            Log In
           </button>
           {/* Add Mobile Menu Button here if needed */}
         </div>
